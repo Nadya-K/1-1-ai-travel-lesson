@@ -32,7 +32,7 @@
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(124, 107, 184, 0.1); 
     padding: 12px 24px; 
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 16px; 
     box-shadow: 0 4px 20px rgba(124, 107, 184, 0.04); 
   }
   .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
@@ -307,21 +307,59 @@
     .cover-text p { font-size: 14px; }
   }
 
+  /* ===== МОБИЛЬНАЯ ВЕРСИЯ: МЕНЮ В ОДНУ СТРОКУ ===== */
   @media (max-width: 760px){
-    .header { padding: 12px 16px; gap: 12px; }
-    .brand { order: 1; }
+    .header { 
+      padding: 10px 12px; 
+      gap: 8px; 
+      flex-wrap: nowrap; /* Запрещаем перенос элементов шапки на новую строку */
+    }
+    .brand { order: 1; flex-shrink: 0; }
+    .brand .brand-text span { display: none; /* Скрываем подзаголовок на мобильных для экономии места */ }
+    .brand .logo { width: 36px; height: 36px; }
+    .brand .brand-text b { font-size: 15px; }
+    
     .progress-wrap { order: 2; margin-left: auto; }
-    .progress-bar { width: 80px; }
-    .nav { order: 3; width: 100%; flex: 0 0 100%; flex-wrap: nowrap; justify-content: flex-start;
-      overflow-x: auto; padding: 4px 0 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .progress-bar { width: 60px; }
+    
+    .nav { 
+      order: 3; 
+      width: 100%; 
+      flex: 0 0 100%; 
+      flex-wrap: nowrap; /* Меню строго в одну строку */
+      justify-content: flex-start;
+      overflow-x: auto; /* Включаем горизонтальную прокрутку */
+      padding: 4px 0 6px; 
+      scrollbar-width: none; 
+      -webkit-overflow-scrolling: touch;
+      gap: 6px;
+    }
     .nav::-webkit-scrollbar { display: none; }
-    .nav a { flex: 0 0 auto; font-size: 13px; padding: 8px 16px; }
-    .actions { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
-      max-width: calc(100vw - 24px); padding: 8px; gap: 8px;
-      scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .nav a { 
+      flex: 0 0 auto; 
+      font-size: 12px; 
+      padding: 6px 12px; 
+      white-space: nowrap; /* Запрещаем перенос текста внутри кнопок */
+    }
+    
+    .actions { 
+      flex-wrap: nowrap; 
+      justify-content: flex-start; 
+      overflow-x: auto;
+      max-width: calc(100vw - 24px); 
+      padding: 8px; 
+      gap: 8px;
+      scrollbar-width: none; 
+      -webkit-overflow-scrolling: touch; 
+    }
     .actions::-webkit-scrollbar { display: none; }
-    .actions .btn { flex: 0 0 auto; padding: 12px 18px; font-size: 13.5px; white-space: nowrap; }
-    .actions .ic { width: 16px; height: 16px; }
+    .actions .btn { 
+      flex: 0 0 auto; 
+      padding: 10px 14px; 
+      font-size: 12px; 
+      white-space: nowrap; 
+    }
+    .actions .ic { width: 14px; height: 14px; }
   }
 </style>
 </head>
