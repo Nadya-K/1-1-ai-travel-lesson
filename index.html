@@ -28,7 +28,7 @@
 
   .header { 
     position: sticky; top: 0; z-index: 100; 
-    background: rgba(255, 255, 255, 0.9); 
+    background: rgba(255, 255, 255, 0.95); 
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(124, 107, 184, 0.1); 
     padding: 12px 24px; 
@@ -307,39 +307,51 @@
     .cover-text p { font-size: 14px; }
   }
 
-  /* ===== МОБИЛЬНАЯ ВЕРСИЯ: МЕНЮ В ОДНУ СТРОКУ ===== */
+  /* ===== МОБИЛЬНАЯ ВЕРСИЯ: ВСЯ ШАПКА ПРОКРУЧИВАЕТСЯ ВМЕСТЕ ===== */
   @media (max-width: 760px){
     .header { 
       padding: 10px 12px; 
-      gap: 8px; 
-      flex-wrap: nowrap; /* Запрещаем перенос элементов шапки на новую строку */
+      gap: 12px; 
+      flex-wrap: nowrap; /* Всё в одну строку */
+      overflow-x: auto; /* Горизонтальная прокрутка всей шапки */
+      scrollbar-width: none; /* Скрываем скроллбар Firefox */
+      -webkit-overflow-scrolling: touch;
     }
-    .brand { order: 1; flex-shrink: 0; }
-    .brand .brand-text span { display: none; /* Скрываем подзаголовок на мобильных для экономии места */ }
-    .brand .logo { width: 36px; height: 36px; }
-    .brand .brand-text b { font-size: 15px; }
+    .header::-webkit-scrollbar { 
+      display: none; /* Скрываем скроллбар Chrome/Safari */
+    }
     
-    .progress-wrap { order: 2; margin-left: auto; }
-    .progress-bar { width: 60px; }
+    .brand { 
+      flex-shrink: 0; /* Запрещаем сжатие логотипа */
+    }
+    .brand .brand-text span { 
+      display: none; /* Скрываем подзаголовок для экономии места */
+    }
+    .brand .logo { 
+      width: 36px; 
+      height: 36px; 
+    }
+    .brand .brand-text b { 
+      font-size: 15px; 
+    }
+    
+    .progress-wrap { 
+      flex-shrink: 0; /* Запрещаем сжатие прогресс-бара */
+    }
+    .progress-bar { 
+      width: 60px; 
+    }
     
     .nav { 
-      order: 3; 
-      width: 100%; 
-      flex: 0 0 100%; 
-      flex-wrap: nowrap; /* Меню строго в одну строку */
+      flex: 0 0 auto; /* Размер по контенту, не растягивается и не сжимается */
+      flex-wrap: nowrap; 
       justify-content: flex-start;
-      overflow-x: auto; /* Включаем горизонтальную прокрутку */
-      padding: 4px 0 6px; 
-      scrollbar-width: none; 
-      -webkit-overflow-scrolling: touch;
       gap: 6px;
     }
-    .nav::-webkit-scrollbar { display: none; }
     .nav a { 
-      flex: 0 0 auto; 
       font-size: 12px; 
       padding: 6px 12px; 
-      white-space: nowrap; /* Запрещаем перенос текста внутри кнопок */
+      white-space: nowrap; 
     }
     
     .actions { 
